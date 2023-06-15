@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="description" content="Free Web tutorials">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="John Doe">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    var map = L.map('map').setView([37.94296740923939, 23.644866810129752], 17);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19
+    }).addTo(map);
+
+    L.Control.geocoder().addTo(map);
+
+    L.Routing.control({
+      waypoints: [
+        L.latLng(37.94296740923939, 23.644866810129752),
+        L.latLng(37.94546983570866, 23.6468711231226)
+      ],
+      routeWhileDragging: true,
+      geocoder: L.Control.Geocoder.nominatim()
+    }).addTo(map);
+
+    // Custom icon for points of interest
+    var poiIcon = L.icon({
+      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      shadowSize: [41, 41],
+      shadowAnchor: [12, 41],
+      popupAnchor: [1, -34]
+    });
+
+    // Custom icon for user location
+    var userIcon = L.icon({
+      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      shadowSize: [41, 41],
+      shadowAnchor: [12, 41],
+      popupAnchor: [1, -34]
+    });
+
+    // Add markers for points of interest
+    var pointOfInterest1 = {
+      name: 'Τρούμπα',
+ 
+
+      description1: '<li><a href="troumpa.html">Τρούμπα</a></li>',
+      lat: 37.9481462,
+      lng: 23.6473816
+    };
+
+    // Add a marker with custom icon for the point of interest
+    var marker1 = L.marker([pointOfInterest1.lat, pointOfInterest1.lng], {icon: poiIcon}).addTo(map);
+    marker1.bindPopup('<h3>' + pointOfInterest1.name + '</h3><p>' + pointOfInterest1.description1 + '</p>');
+
+    var pointOfInterest2 = {
+      name: 'Το αρχαίο θέατρο της Ζέας ( με τα τείχη του Πειραιά)',
+ 
+
+      description2: '<li><a href="athz.html">Αρχαίο θέατρο Ζέας</a></li>',
+      lat: 37.9372921,
+      lng: 23.6420655
+    };
+
+    // Add a marker with custom icon for the point of interest
+    var marker2 = L.marker([pointOfInterest2.lat, pointOfInterest2.lng], {icon: poiIcon}).addTo(map);
+    marker2.bindPopup('<h3>' + pointOfInterest2.name + '</h3><p>' + pointOfInterest2.description2 + '</p>');
+
+    var pointOfInterest3 = {
+      name: 'Αρχαιολογικό Μουσείο Πειραιά',
+ 
+
+      description3: '<li><a href="amtp.html">Aρχαιολογικό Μουσείο Πειραιά </a></li>',
+      lat: 37.9362729,
+      lng: 23.6410148
+    };
+
+    // Add a marker with custom icon for the point of interest
+    var marker3 = L.marker([pointOfInterest3.lat, pointOfInterest3.lng], {icon: poiIcon}).addTo(map);
+    marker3.bindPopup('<h3>' + pointOfInterest3.name + '</h3><p>' + pointOfInterest3.description3 + '</p>');
+
+    var pointOfInterest4 = {
+      name: 'Δημοτικό θέατρο Πειραιά',
+ 
+
+      description4: '<li><a href="dthp.html">Δημοτικό θέατρο Πειραιά</a></li>',
+      lat: 37.9433838,
+      lng: 23.6466926
+    };
+
+    // Add a marker with custom icon for the point of interest
+    var marker4 = L.marker([pointOfInterest4.lat, pointOfInterest4.lng], {icon: poiIcon}).addTo(map);
+    marker4.bindPopup('<h3>' + pointOfInterest4.name + '</h3><p>' + pointOfInterest4.description4 + '</p>');
+
+    var pointOfInterest5 = {
+      name: 'Δημοτική Πινακοθήκη Πειραιά',
+ 
+
+      description5: '<li><a href="dpp.html">Δημοτική Πινακοθήκη Πειραιά</a></li>',
+      lat: 37.9452933,
+      lng: 23.6466794
+    };
+
+    // Add a marker with custom icon for the point of interest
+    var marker5 = L.marker([pointOfInterest5.lat, pointOfInterest5.lng], {icon: poiIcon}).addTo(map);
+    marker5.bindPopup('<h3>' + pointOfInterest5.name + '</h3><p>' + pointOfInterest5.description5 + '</p>');
+   
+    var pointOfInterest5 = {
+      name: 'Ναυτικό Μουσείο της Ελλάδος',
+ 
+
+      description5: '<li><a href="nm.html">Ναυτικό Μουσείο της Ελλάδος</a></li>',
+     
+      lat: 37.932482,
+      lng: 23.6458595
+    };
+
+    // Add a marker with custom icon for the point of interest
+    var marker5 = L.marker([pointOfInterest5.lat, pointOfInterest5.lng], {icon: poiIcon}).addTo(map);
+    marker5.bindPopup('<h3>' + pointOfInterest5.name + '</h3><p>' + pointOfInterest5.description5 + '</p>');
+ 
+    var pointOfInterest6 = {
+      name: 'Μικρολίμανο',
+ 
+
+      description6: '<li><a href="ml.html">Μικρολίμανο</a></li>',
+      lat: 37.9376162,
+      lng: 23.6588395
+    };
+
+    // Add a marker with custom icon for the point of interest
+    var marker6 = L.marker([pointOfInterest6.lat, pointOfInterest6.lng], {icon: poiIcon}).addTo(map);
+    marker6.bindPopup('<h3>' + pointOfInterest6.name + '</h3><p>' + pointOfInterest6.description6 + '</p>');
+
+    var pointOfInterest7 = {
+      name: 'Μαρίνα Ζέας',
+ 
+
+      description7: '<li><a href="mz.html">Μαρίνα Ζέας</a></li>',
+      lat: 37.9374702,
+      lng: 23.6461234
+    };
+
+    // Add a marker with custom icon for the point of interest
+    var marker7 = L.marker([pointOfInterest7.lat, pointOfInterest7.lng], {icon: poiIcon}).addTo(map);
+    marker7.bindPopup('<h3>' + pointOfInterest7.name + '</h3><p>' + pointOfInterest7.description7 + '</p>');
+
+    var pointOfInterest8 = {
+      name: 'Πειραϊκή',
+ 
+
+      description8: '<li><a href="peiraikh.html">Πειραϊκή </a></li>',
+      lat: 37.9308481,
+      lng: 23.6307551
+    };
+
+    // Add a marker with custom icon for the point of interest
+    var marker8 = L.marker([pointOfInterest8.lat, pointOfInterest8.lng], {icon: poiIcon}).addTo(map);
+    marker8.bindPopup('<h3>' + pointOfInterest8.name + '</h3><p>' + pointOfInterest8.description8 + '</p>');
+
+    // Function to display user's location on the map with a custom icon
+    function displayUserLocation(position) {
+      var userLat = position.coords.latitude;
+      var userLng = position.coords.longitude;
+      var userMarker = L.marker([userLat, userLng], { icon: userIcon }).addTo(map);
+      userMarker.bindPopup('<h3>Your Location</h3>');
+      map.setView([userLat, userLng], 17);
+    }
+
+    // Function to handle location errors
+    function handleLocationError(error) {
+      console.log('Error getting user location:', error);
+    }
+
+    // Request user's location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(displayUserLocation, handleLocationError);
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+    }
+  </script>
+</body>
+</html>
